@@ -9,14 +9,14 @@
 >
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>src/goreilly/WebConnector/Tests</directory>
+            <directory>src/Tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <directory suffix=".php">src</directory>
             <exclude>
-                <directory>src/goreilly/WebConnector/Tests</directory>
+                <directory>src/Tests</directory>
             </exclude>
         </whitelist>
     </filter>
