@@ -52,20 +52,4 @@ class TaskQueue implements TaskQueueInterface
         
         $this->max = max($this->max, count($this->tasks));
     }
-    
-    public function serialize()
-    {
-        return serialize([
-            $this->tasks,
-            $this->max,
-        ]);
-    }
-
-    public function unserialize($serialized)
-    {
-        list(
-            $this->tasks,
-            $this->max
-        ) = unserialize($serialized);
-    }
 }

@@ -97,11 +97,9 @@ class TaskQueueTest extends \PHPUnit_Framework_TestCase
 
         $queue->add($task);
 
-        $serialized = $queue->serialize();
+        $serialized = serialize($queue);
 
-        $copy = new TaskQueue();
-
-        $copy->unserialize($serialized);
+        $copy = unserialize($serialized);
 
         $this->assertEquals($copy, $queue);
     }

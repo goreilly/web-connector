@@ -5,7 +5,7 @@ namespace goreilly\WebConnector;
 /**
  * Must be serializeable to we can persist it between requests.
  */
-interface TaskQueueInterface extends \Serializable
+interface TaskQueueInterface
 {
     /**
      * @return int Current number of elements in the queue

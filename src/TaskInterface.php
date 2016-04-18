@@ -8,7 +8,7 @@ use goreilly\WebConnector\QBXMLRequest\QBXMLRequestInterface;
  * Checks if it should be sent.
  * Must be serializable so we can persist it between requests.
  */
-interface TaskInterface extends \Serializable
+interface TaskInterface
 {
     /**
      * Get the request that will be sent to Quickbooks when this task runs.
