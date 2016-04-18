@@ -95,7 +95,7 @@ class AuthenticateEndpoint implements EndpointInterface
                 $alert = 'none'; // Nothing to do
             }
 
-            $response->authenticateResult = ['ticket', 'none'];
+            $response->authenticateResult = ['ticket', $alert];
         }
 
         $response->authenticateResult = [
