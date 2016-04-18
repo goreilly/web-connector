@@ -1,0 +1,24 @@
+{
+    "name": "goreilly/web-connector",
+    "description": "Framework for integrating the Quickbooks Web Connector into web applications",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Garrett O'Reilly",
+            "email": "goreilly@sydcon.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "goreilly\\": "src/goreilly"
+        }
+    },
+    "require": {
+        "ext-simplexml": "*",
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.3"
+    }
+}
