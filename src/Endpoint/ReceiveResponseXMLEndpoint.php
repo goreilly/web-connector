@@ -42,8 +42,8 @@ class ReceiveResponseXMLEndpoint implements EndpointInterface
     {
         $this->delegator->delegate($argv[0]);
 
-        $total = $this->queue->count();
-        $remaining = $this->queue->getMax();
+        $total = $this->queue->getMax();
+        $remaining = $this->queue->count();
 
         if ($total && $remaining) {
             $progress = round(($total - $remaining) / $total * 100);
