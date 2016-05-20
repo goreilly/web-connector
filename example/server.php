@@ -19,11 +19,11 @@ use goreilly\WebConnector\TaskInterface;
 use goreilly\WebConnectorExample\Task\ImportItemsTask;
 use goreilly\WebConnectorExample\Handler\ItemHandler;
 
-require_once __DIR__.'/../../../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 session_start();
 
-$server = new \SoapServer(__DIR__.'/../../goreilly/WebConnector/wsdl.xml', [
+$server = new \SoapServer(__DIR__.'/../wsdl.xml', [
     'exceptions' => true,
     'cache_wsdl' => WSDL_CACHE_NONE
 ]);
