@@ -6,6 +6,10 @@ use goreilly\WebConnector\SOAP\Response\ServerVersionResponse;
 class ServerVersionEndpoint implements EndpointInterface
 {
 
+    public $version;
+
+    public function __construct($version = 'PHP Quickbooks Web Connector 0.1') { $this->version = $version; }
+
     /**
      * @param string $method
      * @return boolean
@@ -21,8 +25,6 @@ class ServerVersionEndpoint implements EndpointInterface
      */
     public function handle(array $argv)
     {
-        $response = new ServerVersionResponse();
-        $response->serverVersionResult = 'NGC Quickbooks Soap Server v0.1';
-        return $response;
+        return new ServerVersionResponse($this->version);
     }
 }
