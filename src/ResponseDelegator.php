@@ -26,10 +26,48 @@ class ResponseDelegator implements ResponseDelegatorInterface
             $name = $element->getName();
             foreach ($this->handlers as $handler) {
                 if ($handler->supports($name)) {
-                    $handler->handle($element);
+
+                    list($severity, $code, $message) = $this->extractErrorAttributes($element);
+
+                    if ($severity === 'Error') {
+                        if ($handler instanceof ErrorAwareHandlerInterface) {
+                            $handler->error($code, $message);
+                        }
+                    } else {
+                        $handler->handle($element);
+                    }
                 }
             }
         }
+    }
+
+    /**
+     * An error occurred in Quickbooks. Instead of receiving the expected 
+     * format we will only get an error message.
+     * @param \SimpleXMLElement $element
+     * @return string[] (severity, code, message)
+     */
+    protected function extractErrorAttributes(\SimpleXMLElement $element)
+    {
+        $severity = null;
+        $code = null;
+        $message = null;
+
+        foreach ($element->attributes() as $key => $value) {
+            switch ($key) {
+                case 'statusSeverity':
+                    $severity = (string) $value;
+                    break;
+                case 'statusCode':
+                    $code = (int) $value;
+                    break;
+                case 'statusMessage':
+                    $message = (string) $value;
+                    break;
+            }
+        }
+
+        return [$severity, $code, $message];
     }
 
     /**
