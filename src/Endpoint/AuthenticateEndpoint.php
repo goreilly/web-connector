@@ -69,15 +69,16 @@ class AuthenticateEndpoint implements EndpointInterface
     /**
      * @param mixed[] $argv
      * @return mixed
+     * @see http://wiki.consolibyte.com/wiki/doku.php/quickbooks_web_connector
      */
     public function handle(array $argv)
     {
         $request = $this->mapRequest($argv);
 
-        $response = new AuthenticateResponse;
-
         $ticket = $this->authenticator->getTicket($request->strUserName, $request->strPassword);
         $alert = 'nvu'; // Not Valid User
+
+        $taskCount = 0;
 
         if ($ticket) {
 
@@ -95,14 +96,13 @@ class AuthenticateEndpoint implements EndpointInterface
                 $alert = 'none'; // Nothing to do
             }
 
-            $response->authenticateResult = ['ticket', $alert];
         }
 
-        $response->authenticateResult = [
+        // If there is something to do, send 4 elements.
+
+        return new AuthenticateResponse(array_pad([
             $ticket,
             $alert,
-        ];
-
-        return $response;
+        ], $taskCount > 0 ? 4 : 2 , ''));
     }
 }
